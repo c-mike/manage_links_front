@@ -4,4 +4,100 @@
 
 {% block content %}
 
+{% comment %} <div id="errorAlert" class="alert alert-danger alert-dismissible fade " role="alert">
+    <strong>Hei!</strong> Os dados introduzidos não são validos.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> {% endcomment %}
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            {% comment %} <th> # </th> {% endcomment %}
+            <th> Title </th>
+            <th> URL </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for link in links %}
+        <tr>
+            {% comment %} <th scope="row">{{link.id}}</th> {% endcomment %}
+            <td> {{link.title}} </td>
+            <td> {{link.url}} </td>
+            
+            <td> <button type="button" class="btn btn-primary" 
+                onclick="showData_edit('{{link.id}}', '{{link.title}}', '{{link.url}}')"
+                data-bs-toggle="modal" data-bs-target="#editModal">
+                Editar</button></td>
+
+            <td> <button type="button" class="btn btn-danger" 
+                onclick="showData_del('{{link.id}}')"
+                data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Eliminar</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel" style="font-weight:700">Delete Link</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex justify-content-center">
+                {% comment %} <i class="fa fa-exclamation-triangle"></i> {% endcomment %}
+                <input id="id_del" type="text" class="form-control" hidden>
+                <label for="exampleInputEmail1" style="font-weight:700"class="form-label">Tens a certeza?</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" onclick="del()" class="btn btn-danger" data-bs-dismiss="modal">Confirmar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel" style="font-weight:700">Editar Link</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <input id="id_edit" type="text" class="form-control" hidden>
+                <div class="m-2">
+                    <label for="exampleInputEmail1" style="font-weight:700" class="form-label">Title</label>
+                    <input id="title" type="text" class="form-control">
+                </div>
+                <div class="m-2">
+                    <label for="exampleInputEmail1" style="font-weight:700"class="form-label">URL</label>
+                    <input id="url" type="text" class="form-control" required>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" onclick="edit()" class="btn btn-primary" data-bs-dismiss="modal">Editar</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script type="text/javascript">
+    function showData_edit(id, title, url){
+        document.getElementById('id_edit').value = id;
+        document.getElementById('title').value = title;
+        document.getElementById('url').value = url;
+    }
+    function showData_del(id){document.getElementById('id_del').value = id;}
+</script>
+<script type="text/javascript" src={% static "js/index.js" %}></script>
 {% endblock %}
