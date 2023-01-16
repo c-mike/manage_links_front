@@ -1,0 +1,34 @@
+{% extends "main/main.html" %}
+{% load static %}
+{% block title %}News links{% endblock %}
+
+{% block content %}
+<table class="table table-dark">
+    <thead>
+        <tr>
+            {% comment %} <th> # </th> {% endcomment %}
+            <th> Title </th>
+            <th> URL </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for link in links %}
+        <tr>
+            {% comment %} <th scope="row">{{link.id}}</th> {% endcomment %}
+            <td> {{link.title}} </td>
+            <td> {{link.url}} </td>
+            
+            <td> <button type="button" class="btn btn-primary" 
+                onclick="showData_edit('{{link.id}}', '{{link.title}}', '{{link.url}}')"
+                data-bs-toggle="modal" data-bs-target="#editModal">
+                Editar</button></td>
+
+            <td> <button type="button" class="btn btn-danger" 
+                onclick="showData_del('{{link.id}}')"
+                data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Eliminar</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
