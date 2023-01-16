@@ -1,1 +1,1 @@
-web gunicorn manage_links_front.wsgi:apllication --log-file -
+web: gunicorn manage_links_front.wsgi
