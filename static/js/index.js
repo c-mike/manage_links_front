@@ -1,4 +1,4 @@
-const URL = 'http://localhost:8888';
+const URL = 'https://manage-links-back.herokuapp.com';
 
 function edit() {
     const id = parseInt(document.getElementById('id_edit').value);
