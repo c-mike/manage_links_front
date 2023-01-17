@@ -1,5 +1,18 @@
 const URL = 'https://manage-links-back.herokuapp.com';
 
+function saveLink(title, url){
+    const data = {title, url}
+    console.log('data ', data)
+
+    axios.post(URL+'/add', data)
+    .then(()=> {
+        document.getElementById("successAlert").removeAttribute("hidden");
+    }) 
+    .catch(errors => {
+        document.getElementById("successAlert").removeAttribute("hidden");
+    })
+}
+
 function edit() {
     const id = parseInt(document.getElementById('id_edit').value);
     const title = document.getElementById('title').value;
@@ -10,17 +23,17 @@ function edit() {
     axios.post(URL+'/edit', data)
     .then(()=> window.location.reload()) 
     .catch(errors => {
-        console.log(errors)
-        document.getElementById('url').hidden = false
+        document.getElementById("fail").removeAttribute("hidden");
     })
 }
 
 function del() {
-    const id = parseInt(document.getElementById('id_edit').value);
+    const id = parseInt(document.getElementById('id_del').value);
     const data = {id}
     console.log(data)
 
     axios.delete(URL+'/remove', {data})
     .then(()=> window.location.reload()) 
-    .catch(errors => console.log(errors))
+    .catch(() => 
+        document.getElementById("fail").removeAttribute("hidden"))
 }

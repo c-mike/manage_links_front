@@ -1,0 +1,37 @@
+{% extends "main/main.html" %}
+{% load static %}
+{% block title %}News links{% endblock %}
+
+{% block content %}
+
+<div id="successAlert" class="alert alert-success alert-dismissible fade show" hidden role="alert">
+    <strong>Link guardado!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div id="failAlert" class="alert alert-danger alert-dismissible fade show" hidden role="alert">
+    <strong>Erro ao salvar link!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th> Title </th>
+            <th> URL </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for url in urls %}
+        <tr>
+            <td> {{url.title}} </td>
+            <td> {{url.url}} </td>
+
+            <td> <button type="button" class="btn btn-success" 
+                onclick="saveLink('{{url.title}}', '{{url.url}}')">
+                Guardar</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script type="text/javascript" src={% static "js/index.js" %}></script>
+{% endblock %}
