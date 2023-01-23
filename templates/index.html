@@ -8,7 +8,6 @@
     <strong>Flha ao realizar a operação!</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-
 <table class="table table-dark">
     <thead>
         <tr>
@@ -37,6 +36,20 @@
         {% endfor %}
     </tbody>
 </table>
+
+    {% comment %} pagination {% endcomment %}
+<div class="bg-dark text-white">
+    {% if links.has_previous %}
+    <a href="?page=1">&laquo; First</a>
+    <a href="?page={{ links.previous_page_number }}">Previous</a>
+    {% endif %}
+    Pagina {{ links.number }} de {{ links.paginator.num_pages }}
+
+    {% if links.has_next %}
+    <a href="?page={{ links.next_page_number }}">Next</a>
+    <a href="?page={{ links.paginator.num_page }}">Last &raquo;</a>
+    {% endif %}
+</div>
 
 <!-- Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -99,5 +112,4 @@
     }
     function showData_del(id){document.getElementById('id_del').value = id;}
 </script>
-<script type="text/javascript" src={% static "js/index.js" %}></script>
 {% endblock %}

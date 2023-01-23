@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import requests
 from decouple import config
 import re
+from django.core.paginator import Paginator
 
 def link(request):
     urls = []
@@ -21,6 +22,10 @@ def link(request):
     return render(request, 'link.html', {'urls':urls})
 
 def index(request):
-    response = requests.get(config('API') + '/all')
-    links = response.json()
+    response = requests.get(config('SERVER') + '/all')
+
+    p = Paginator(response.json(), 10)
+    page = request.GET.get('page')
+    links = p.get_page(page)
+
     return render(request, 'index.html',{'links':links})

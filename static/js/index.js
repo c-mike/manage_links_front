@@ -1,10 +1,11 @@
-const URL = 'https://manage-links-back.herokuapp.com';
+const SERVER = 'http://localhost:8888'; // development
+// const SERVER = 'https://manage-links-back.herokuapp.com'; //production
 
 function saveLink(title, url){
     const data = {title, url}
     console.log('data ', data)
 
-    axios.post(URL+'/add', data)
+    axios.post(SERVER+'/add', data)
     .then(()=> {
         document.getElementById("successAlert").removeAttribute("hidden");
     }) 
@@ -20,7 +21,7 @@ function edit() {
 
     const data = {id, title, url}
 
-    axios.post(URL+'/edit', data)
+    axios.post(SERVER+'/edit', data)
     .then(()=> window.location.reload()) 
     .catch(errors => {
         document.getElementById("fail").removeAttribute("hidden");
@@ -32,7 +33,7 @@ function del() {
     const data = {id}
     console.log(data)
 
-    axios.delete(URL+'/remove', {data})
+    axios.delete(SERVER+'/remove', {data})
     .then(()=> window.location.reload()) 
     .catch(() => 
         document.getElementById("fail").removeAttribute("hidden"))
