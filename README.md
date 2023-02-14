@@ -11,4 +11,8 @@ Front-end system to manage links
 ### Mas ainda foi testado apenas nessa pagina :)
 `https://www.revistabula.com/7073-lista-definitiva-dos-100-melhores-filmes-da-historia-do-cinema/`
 
-### Servidor de apis `https://github.com/c-mike/manage-links-back`
+### Servidor de apis (code) `https://github.com/c-mike/manage-links-back`
+### Servidor de apis (online app) `https://manage-links-back.herokuapp.com/
+
+### Online app `https://manage-links-front.herokuapp.com/`
+
