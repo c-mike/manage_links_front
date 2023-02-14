@@ -1,5 +1,5 @@
-const SERVER = 'http://localhost:8888'; // development
-// const SERVER = 'https://manage-links-back.herokuapp.com'; //production
+// const SERVER = 'http://localhost:8888'; // development
+const SERVER = 'https://manage-links-back.herokuapp.com'; //production
 
 function saveLink(title, url){
     const data = {title, url}
